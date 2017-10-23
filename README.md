@@ -17,10 +17,10 @@ Fork this repo to your personal GitHub account.  After you have completed your f
 2.  AWS Account
 3.  Docker
 
-<h2> Scenario:
+## Scenario:
 Requirements dictate that all EC2 instances created with the 'dev' tag must be tracked in a database.
 
-<h2> Approach:
+## Approach:
 
 Clone the repo into your local filesystem.
 
@@ -47,37 +47,37 @@ Then in the Lambda function tab, set a trigger to the Lambda function to execute
 
 Setting up the InfluxDB container:
 
-1) Spin up a new t2.micro instance and ssh into it (make sure proper ports are accessible via security groups)
-2) Run a '<sudo yum update -y>' to update the system.
-3) Install docker and docker-compose with: '<sudo yum install docker>' and '<yum install docker-compose>'.
-4) Copy the docker-compose.yml or SCP it over to your InfluxDB EC2 instance.
-5) To make things easier: you can set your user to be in the docker group so you dont have to run everything as sudo
+1. Spin up a new t2.micro instance and ssh into it (make sure proper ports are accessible via security groups)
+2. Run a '<sudo yum update -y>' to update the system.
+3. Install docker and docker-compose with: '<sudo yum install docker>' and '<yum install docker-compose>'.
+4. Copy the docker-compose.yml or SCP it over to your InfluxDB EC2 instance.
+5. To make things easier: you can set your user to be in the docker group so you dont have to run everything as sudo
 by running this command exit '<sudo usermod -aG docker $(whoami)>'.
-6) Run '<docker-compose up>' to bring up the InfluxDB. You can test that its listening on port 8086 by running '<lsof -i :8086>'
+6. Run '<docker-compose up>' to bring up the InfluxDB. You can test that its listening on port 8086 by running '<lsof -i :8086>'
 to verify the service is up and is listening on the correct port. You can also test with 'docker inspect'.
 
-<h2> Creating your ZIP file for upload to Lambda:
+## Creating your ZIP file for upload to Lambda:
 
 Navigate to the 'interview-homework/deployment' folder and zip the files up using the following command:
     '<zip -r deploy.zip .>'
 
 This should create a deploy.zip file. Save this for the upload to Lambda later.
 
-<h2> Setting up the function:
+## Setting up the function:
 
 1. Copy and paste the main.py text into the editor
 2. Change handler to main.lambda_handler
 3. Save it
 4. Then upload a zip by clicking the "Code Entry type" dropdown and selecting "Upload a .zip file" and upload the deploy.zip (you need this uploaded to AWS to run python modules that the Lambda function needs).
 
-<h2> Create DB via CLI:
+## Create DB via CLI:
 curl -X POST -G 54.219.171.245:8086/query --data-urlencode "q=CREATE DATABASE test"
 
-<h2> Query the DB via CLI:
+## Query the DB via CLI:
 
 curl -G 54.219.171.245:8086/query --data-urlencode "q=Select * from Running_Instances" --data-urlencode "db=test"
 
-<h2> Test case:
+## Test case:
 Create a new EC2 host either in the console or via API with the Name:env=Value:dev tags.
 This should fire off the Cloudwatch event and then trigger the Lambda function.
 
