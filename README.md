@@ -48,13 +48,13 @@ Then in the Lambda function tab, set a trigger to the Lambda function to execute
 Setting up the InfluxDB container:
 
 1. Spin up a new t2.micro instance and ssh into it (make sure proper ports are accessible via security groups)
-2. Run a '<sudo yum update -y>' to update the system.
-3. Install docker and docker-compose with: '<sudo yum install docker>' and '<yum install docker-compose>'.
+2. Run a `<sudo yum update -y>` to update the system.
+3. Install docker and docker-compose with: `<sudo yum install docker>` and `<yum install docker-compose>`.
 4. Copy the docker-compose.yml or SCP it over to your InfluxDB EC2 instance.
 5. To make things easier: you can set your user to be in the docker group so you dont have to run everything as sudo
-by running this command exit '<sudo usermod -aG docker $(whoami)>'.
-6. Run '<docker-compose up>' to bring up the InfluxDB. You can test that its listening on port 8086 by running '<lsof -i :8086>'
-to verify the service is up and is listening on the correct port. You can also test with 'docker inspect'.
+by running this command exit `<sudo usermod -aG docker $(whoami)>`.
+6. Run `<docker-compose up>` to bring up the InfluxDB. You can test that its listening on port 8086 by running `<lsof -i :8086>`
+to verify the service is up and is listening on the correct port. You can also test with <docker inspect ContainerID>`.
 
 ## Creating your ZIP file for upload to Lambda:
 
