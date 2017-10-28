@@ -17,6 +17,8 @@ Fork this repo to your personal GitHub account.  After you have completed your f
 2.  AWS Account
 3.  Docker
 
+## My solution
+
 ## Scenario:
 Requirements dictate that all EC2 instances created with the 'dev' tag must be tracked in a database.
 
@@ -45,7 +47,7 @@ This should set to rule to fire when there is a change in state for any EC2 inst
 Also set the target as the Lambda function. This executes the function on a pattern match.
 Then in the Lambda function tab, set a trigger to the Lambda function to execute on Cloudwatch Event Rule.
 
-Setting up the InfluxDB container:
+## Setting up the InfluxDB container:
 
 1. Spin up a new t2.micro instance and ssh into it (make sure proper ports are accessible via security groups)
 2. Run a `sudo yum update -y` to update the system.
